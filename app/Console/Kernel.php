@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use \Spatie\ShortSchedule\ShortSchedule;
 
 class Kernel extends ConsoleKernel
 {
@@ -41,6 +42,6 @@ class Kernel extends ConsoleKernel
 
     protected function shortSchedule(ShortSchedule $shortSchedule)
     {
-        $shortSchedule->command('plan:job')->between('00:59', '01:00')->everySecond();
+        $shortSchedule->command('mqtt:cron')->between('13:59', '14:00')->everyFiveSecond();
     }
 }
