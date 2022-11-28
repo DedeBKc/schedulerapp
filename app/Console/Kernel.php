@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\PlanCron::class,
+        Commands\MqttCron::class,
     ];
 
     /**
@@ -25,7 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('plan:cron')->everyFiveMinutes();
+        $schedule->command('plan:cron')->everyTwoMinutes();
+        $schedule->command('mqtt:cron')->everyMinute();
     }
 
     /**
@@ -42,6 +44,6 @@ class Kernel extends ConsoleKernel
 
     protected function shortSchedule(ShortSchedule $shortSchedule)
     {
-        $shortSchedule->command('mqtt:cron')->between('13:59', '14:00')->everyFiveSecond();
+        // $shortSchedule->command('mqtt:cron')->between('13:59', '14:00')->everySecond();
     }
 }

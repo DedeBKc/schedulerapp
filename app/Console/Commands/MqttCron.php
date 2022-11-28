@@ -52,9 +52,9 @@ class MqttCron extends Command
         $mqtt->connect($connectionSettings, $clean_session);
 
         $curr = \Carbon\Carbon::now()->timezone('Asia/Jakarta')->format('H:i');
-        $mqtt->publish('plan:cron', "{'time': $curr }", 2, true);
+        $mqtt->publish('mqtt:cron', "{'time': $curr }", 2, true);
         Log::info('ResetLineStop', [
-            'topic' => 'plan:cron',
+            'topic' => 'mqtt:cron',
             'message' => "{'time': $curr }",
             'qos' => 2,
             'retain' => true
